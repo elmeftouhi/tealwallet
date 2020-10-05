@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home1/tealwallet/public_html/
+    - /bin/cp -r ./public/js/* $DEPLOYPATH/js
+    - /bin/cp -r ./public/css/* $DEPLOYPATH/css
+    - /bin/cp -r ./public/.htaccess $DEPLOYPATH
