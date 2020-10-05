@@ -18,20 +18,17 @@ class ProfileController extends Controller{
 
     public function update(Request $r){
 
-        if($r->hasFile('avatar')){
-            dd($r->avatar->getClientOriginalName());
-        }else{
-            dd($r);
-        }
-
         $validateData = $r->validate([
             'name'                      =>  'required',
-            'email'                     =>  'required|email'
+            'email'                     =>  'required|email|unique:users,email'
          ]);
-         //$path = $r->file('avatar')->store('avatar');
-         dump( request('avatar')->store('uploads', 'public') );
-         dump($r->all());
-        
+         Auth::user()->update([
+            'name'      =>  $r->name,
+            'email'     =>  $r->email
+        ]);
+
+        Session::flash('message', 'Profile Updated');
+        return redirect(route('home'));
     }
 
     public function upload(Request $r){
