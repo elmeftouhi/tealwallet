@@ -20,7 +20,7 @@ class ProfileController extends Controller{
 
         $validateData = $r->validate([
             'name'                      =>  'required',
-            'email'                     =>  'required|email|unique:users,email'
+            'email'                     =>  'required|email|unique:users,email,'.Auth::id()
          ]);
          Auth::user()->update([
             'name'      =>  $r->name,
