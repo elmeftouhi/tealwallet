@@ -20,25 +20,25 @@
                 class="hover:bg-teal-800 hover:rounded cursor px-2 py-1 inline"
             >
                 @csrf
-                <button><i class="fas fa-door-open"></i> LogOut</button>
+            <button><i class="fas fa-door-open"></i> LogOut</button>
             </form>
         </div>
 
 
         <ul class="expense_graph_sums">
             <li class="mb-2">
-                <a href="{{ route('home') }}" class="block -mx-2 px-3 py-1 bg-teal-800 rounded">
-                    <i class="fas fa-home"></i> Dashbord
+                <a href="{{ route('home') }}" class=" text-base block -mx-2 px-3 py-1 {{ request()->is('/') ? 'bg-teal-800 rounded' : 'hover:bg-teal-800 hover: rounded' }}">
+                    <i class="fas fa-home text-xl"></i> Dashbord
                 </a>
             </li>
             <li class="mb-2">
-                <a href="{{ route('expense.index') }}" class="block -mx-2 px-3 py-1 hover:bg-teal-800 hover: rounded">
-                    <i class="fas fa-hand-holding-usd"></i> Expenses
+                <a href="{{ route('expense.index') }}" class=" text-base block -mx-2 px-3 py-1 {{ Route::currentRouteNamed( 'expense.index' ) ?  'bg-teal-800 rounded' : 'hover:bg-teal-800 hover: rounded' }} ">
+                    <i class="fas fa-hand-holding-usd text-xl"></i> Expenses
                 </a>
             </li>
             <li class="mb-2">
-            <a href="{{ route('category') }}" class="block -mx-2 px-3 py-1 hover:bg-teal-800 hover: rounded">
-                    <i class="fas fa-folder-open"></i> Expense Category
+            <a href="{{ route('category') }}" class=" text-base block -mx-2 px-3 py-1 {{ Route::currentRouteNamed( 'category' ) ?  'bg-teal-800 rounded' : 'hover:bg-teal-800 hover: rounded' }}">
+                    <i class="fas fa-folder-open text-xl"></i> Expense Category
                 </a>
             </li>
             <li class="my-2 text-lg mt-4">
@@ -49,7 +49,7 @@
             <li class="mb-2">
                 <a href="" class="block -mx-2 px-3 py-1 hover:bg-teal-800 hover: rounded">
                     <div class="flex justify-between items-center">
-                        <div class="">
+                        <div class="text-base">
                             <i class="fas fa-hand-holding-usd"></i> Today
                         </div>
                         <div class="text-teal-900 bg-teal-100 rounded-full px-2 text-xs sum_today">
@@ -63,7 +63,7 @@
             <li class="mb-2">
                 <a href="" class="block -mx-2 px-3 py-1 hover:bg-teal-800 hover: rounded">
                     <div class="flex justify-between items-center">
-                        <div class="">
+                        <div class="text-base">
                             <i class="fas fa-hand-holding-usd"></i> This Week
                         </div>
                         <div class="text-teal-900 bg-teal-100 rounded-full px-2 text-xs sum_week">
@@ -77,7 +77,7 @@
             <li class="mb-2">
                 <a href="" class="block -mx-2 px-3 py-1 hover:bg-teal-800 hover: rounded">
                     <div class="flex justify-between items-center">
-                        <div class="">
+                        <div class="text-base">
                             <i class="fas fa-hand-holding-usd"></i> This Month
                         </div>
                         <div class="text-teal-900 bg-teal-100 rounded-full px-2 text-xs sum_month">
@@ -91,7 +91,7 @@
             <li class="mb-2">
                 <a href="" class="block -mx-2 px-3 py-1 hover:bg-teal-800 hover: rounded">
                     <div class="flex justify-between items-center">
-                        <div class="">
+                        <div class="text-base">
                             <i class="fas fa-hand-holding-usd"></i> This Year
                         </div>
                         <div class="text-teal-900 bg-teal-100 rounded-full px-2 text-xs sum_year">
