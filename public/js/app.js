@@ -83448,8 +83448,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Yassine's\Desktop\PHP\masrofi.io\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Yassine's\Desktop\PHP\masrofi.io\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Yassine's\Desktop\PHP\tealwallet\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Yassine's\Desktop\PHP\tealwallet\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

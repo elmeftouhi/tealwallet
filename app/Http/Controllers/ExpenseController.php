@@ -32,6 +32,8 @@ class ExpenseController extends Controller{
         $this->middleware('auth');
     }
     public function index(){
+        dump($this->getAvgMonth());
+        dump($this->getAvgDay());
         return view('expense.index', ['expenses'=> Auth::user()->expenses->sortByDesc('expense_date')]);
     }
 
@@ -176,5 +178,25 @@ class ExpenseController extends Controller{
             'month'     =>  Str::money($this->getSumThisMonth(), 2),
             'year'      =>  Str::money($this->getSumThisYear(), 2),
         ];
+    }
+
+    public function getAvgDay(){
+        $expenses = DB::table('expenses')
+        ->select(DB::raw('sum(amount) as total'))
+        ->whereYear('expense_date', '=', date('Y'))
+        ->where('user_id', Auth::id())
+        ->groupBy(DB::raw('Day(expense_date)') )
+        ->get();
+        return $expenses->avg('total');    
+    }
+
+    public function getAvgMonth(){
+        $expenses = DB::table('expenses')
+        ->select(DB::raw('sum(amount) as total'))
+        ->whereYear('expense_date', '=', date('Y'))
+        ->where('user_id', Auth::id())
+        ->groupBy(DB::raw('Month(expense_date)') )
+        ->get();
+        return $expenses->avg('total');    
     }
 }

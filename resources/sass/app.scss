@@ -1,7 +1,14 @@
 @import "tailwindcss/base";
 
 @import "tailwindcss/components";
-
+  .card{
+    @apply block rounded-lg p-5 border bg-white mb-4 shadow-md transform
+  }
+  @media (max-width:360px) {
+    .card{
+      @apply py-4 px-1
+    }
+  }
 @import "tailwindcss/utilities";
 
 @import '~@fortawesome/fontawesome-free/css/all.css';
@@ -20,9 +27,9 @@
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #702459;
+    background: #234e52;
     border-radius: 100vh;
-    border: 1px solid #702459;
+    border: 1px solid #234e52;
   }
   
   /* Handle on hover */
