@@ -83130,6 +83130,7 @@ $(document).ready(function () {
     var url = $(this).val() === "month" ? "/expense/graph/" + thisYear + "/" + thisMonth : "/expense/graph/" + thisYear;
     var that = $(this);
     var total = 0;
+    $('.lds-ripple').parent().removeClass('hide');
     $.ajax({
       type: "GET",
       url: url,

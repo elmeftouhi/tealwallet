@@ -145,7 +145,7 @@ $(document).ready(function(){
         var that = $(this);
 
         var total = 0;
-
+        $('.lds-ripple').parent().removeClass('hide');
         $.ajax({
             type        :     "GET",
             url         :      url,
