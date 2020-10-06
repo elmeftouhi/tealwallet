@@ -29,7 +29,13 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="expense_date">
                 Date 
             </label>
-            <input value="{{ date('Y-m-d\TH:i:s') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="expense_category" type="datetime-local" name="expense_date">
+            <input 
+                value="{{ date('Y-m-d\TH:i:s') }}" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                id="expense_category" 
+                type="datetime-local" 
+                name="expense_date"
+            >
             @error('expense_date')
                 <div class="text-red-600 font-semibold text-sm py-1"> {{ $message }} </div> 
             @enderror

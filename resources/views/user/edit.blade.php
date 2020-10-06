@@ -50,7 +50,7 @@
 
             <div class="flex items-center justify-between">
                 <button class="w-full bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                    Register
+                    Update Profile
                 </button>
             </div>
         </div>

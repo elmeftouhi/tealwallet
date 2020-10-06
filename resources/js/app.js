@@ -70,9 +70,7 @@ $(window).on('load', function() {
             console.log(textStatus);
             console.log(error);
         });
-    }else{
-        alaert("not");
-    }  
+    } 
 });
 
 $(document).ready(function(){
