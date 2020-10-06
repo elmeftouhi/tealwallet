@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
-    <script src="{{ asset('js/app.js?v=1.0.1') }}" defer></script>
+    <script src="{{ asset('js/app.js?v=1.0.2') }}" defer></script>
     
     <script src="{{ asset('js/jquery-ui.js') }}" defer></script>
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css">
