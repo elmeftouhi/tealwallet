@@ -75,6 +75,11 @@ $(window).on('load', function() {
 
 $(document).ready(function(){
 
+    /** Display Selected Icon */
+    $("select#icon").on('change', function(){
+        $('.icon_display').html( $("select#icon option:selected").attr("data-icon") );
+    })
+
     /** Show Upload File */
     $(".show-upload").on("click", function(){
         var target = $(this).attr('data-target');

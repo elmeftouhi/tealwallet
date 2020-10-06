@@ -23,23 +23,26 @@
         </div>
 
         <div class="flex">
-            <div class="mb-4">
+            <div class="mb-4 flex-1">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="icon">
-                    Icons : {!! $category->icon !!}
+                    Icons : 
                 </label>
-                <select name="icon" id="icon" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    @foreach ($icons as $k=>$icon)
-                        @if ($icon === $category->icon)
-                             <option selected id="{{ $k }}"> {{ $icon }} </option>
-                        @else
-                            <option id="{{ $k }}"> {{ $icon }} </option>
-                        @endif
-                       
-                    @endforeach
-                </select>
+                <div class="flex justify-between items-center">
+                    <select name="icon" id="icon" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        @foreach ($icons as $k=>$icon)
+                            @if ($icon === $category->icon)
+                                <option selected data-icon="{{ $icon }}" value="{{ $icon }}"> {{ $k }} </option>
+                            @else
+                                <option data-icon="{{ $icon }}" value="{{ $icon }}"> {{ $k }} </option>
+                            @endif
+                        
+                        @endforeach
+                    </select>
+                    <span class="icon_display pl-6 text-2xl w-20">{!! $category->icon !!}</span>
+                </div>
             </div>
     
-            <div class="mb-4 ml-4">
+            <div class="mb-4 ml-4 w-20">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="expense_level">
                     Position
                 </label>
