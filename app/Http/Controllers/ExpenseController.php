@@ -32,8 +32,7 @@ class ExpenseController extends Controller{
         $this->middleware('auth');
     }
     public function index(){
-        dump($this->getAvgMonth());
-        dump($this->getAvgDay());
+        dump($this->getAvg());
         return view('expense.index', ['expenses'=> Auth::user()->expenses->sortByDesc('expense_date')]);
     }
 
@@ -198,5 +197,12 @@ class ExpenseController extends Controller{
         ->groupBy(DB::raw('Month(expense_date)') )
         ->get();
         return $expenses->avg('total');    
+    }
+
+    public function getAvg(){
+        return [
+            'day'       =>  $this->getAvgDay(),
+            'month'     =>  $this->getAvgMonth()
+        ];
     }
 }
