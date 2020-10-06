@@ -83129,17 +83129,20 @@ $(document).ready(function () {
     var thisMonth = moment().format('MM');
     var url = $(this).val() === "month" ? "/expense/graph/" + thisYear + "/" + thisMonth : "/expense/graph/" + thisYear;
     var that = $(this);
+    var total = 0;
     $.ajax({
       type: "GET",
       url: url,
       dataType: "json"
     }).done(function (response) {
+      console.log(response);
       var labels = [];
       var values = [];
 
       for (var key in response) {
         labels.push(key);
         values.push(response[key]);
+        total = parseInt(total) + parseInt(response[key]);
       }
 
       $('.lds-ripple').parent().addClass('hide');
@@ -83147,6 +83150,9 @@ $(document).ready(function () {
       myChart.data.datasets[0].data = values;
       myChart.data.datasets[0].label = that.val() === "month" ? 'Expense Of ' + thisMonth + '-' + thisYear : 'Expense Of ' + thisYear;
       myChart.update();
+      config.labels = labels;
+      config.data = values;
+      config.caption = that.val() === "month" ? 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total : 'Expense Of ' + thisYear + ' Total : ' + total;
     }).fail(function (xhr) {
       $("#preloader").remove();
       alert("Error");

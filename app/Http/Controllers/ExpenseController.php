@@ -77,6 +77,27 @@ class ExpenseController extends Controller{
         return redirect( route('expense.index') );
     }
 
+    public function sumByYear($year = 0, $month = 0){
+        $year = $year === 0? date('Y'): $year;
+        $expenses = DB::table('expenses')
+                        ->select(DB::raw('MONTHNAME(expense_date) as month'), DB::raw('sum(amount) as total'))
+                        ->whereYear('expense_date', '=', $year)
+                        ->where('user_id', Auth::id())
+                        ->groupBy(DB::raw('MONTHNAME(expense_date)') )
+                        ->get()
+                        ->toArray();
+                        //->toJson();
+        $month_total = [];
+        foreach($this->months as $month){
+            $total = 0;
+            foreach($expenses as $e)
+                if($e->month === $month) $total = $e->total;                   
+            
+            $month_total[$month] = $total;
+        }
+        return json_encode($month_total);
+    }
+
     public function sumByYearMonth($year = 0, $month = 0){
 
         $year = $year === 0? date('Y'): $year;
