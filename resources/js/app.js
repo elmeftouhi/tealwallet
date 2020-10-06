@@ -34,25 +34,46 @@ function doSearch() {
     var rows = document.getElementsByTagName("tr");
     var on = 0;
     for ( var i = 0; i < rows.length; i++ ) {
-      var fullname = rows[i].getElementsByTagName("td");
-      fullname = fullname[0].innerHTML.toLowerCase();
-      if ( fullname ) {
-          if ( v.length == 0 || (v.length < 3 && fullname.indexOf(v) == 0) || (v.length >= 3 && fullname.indexOf(v) > -1 ) ) {
-          rows[i].style.display = "";
-          on++;
+        var fullname = rows[i].getElementsByTagName("td");
+        fullname = fullname[0].innerHTML.toLowerCase();
+        if ( fullname ) {
+            if ( v.length == 0 || (v.length < 3 && fullname.indexOf(v) == 0) || (v.length >= 3 && fullname.indexOf(v) > -1 ) ) {
+            rows[i].style.display = "";
+            on++;
         } else {
-          rows[i].style.display = "none";
+            rows[i].style.display = "none";
         }
-      }
+        }
     }
     var n = document.getElementById("noresults");
     if ( on == 0 && n ) {
-      n.style.display = "";
-      document.getElementById("qt").innerHTML = q.value;
+        n.style.display = "";
+        document.getElementById("qt").innerHTML = q.value;
     } else {
-      n.style.display = "none";
+        n.style.display = "none";
     }
-  }
+}
+
+$(window).on('load', function() {
+    /** Get Avg */
+    if($(".avg_day").length>0 && $(".avg_month").length>0 ){
+        $.ajax({
+            type        :     "GET",
+            url         :      "/expense/graph/avg",
+            dataType    :     "json",
+        }).done(function(response){
+            $(".avg_day").html(response.day);
+            $(".avg_month").html(response.month);
+            console.log(response);
+        }).fail(function(xhr, textStatus, error) {
+            console.log(xhr.statusText);
+            console.log(textStatus);
+            console.log(error);
+        });
+    }else{
+        alaert("not");
+    }  
+});
 
 $(document).ready(function(){
 

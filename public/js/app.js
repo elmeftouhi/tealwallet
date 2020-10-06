@@ -83045,6 +83045,26 @@ function doSearch() {
   }
 }
 
+$(window).on('load', function () {
+  /** Get Avg */
+  if ($(".avg_day").length > 0 && $(".avg_month").length > 0) {
+    $.ajax({
+      type: "GET",
+      url: "/expense/graph/avg",
+      dataType: "json"
+    }).done(function (response) {
+      $(".avg_day").html(response.day);
+      $(".avg_month").html(response.month);
+      console.log(response);
+    }).fail(function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    });
+  } else {
+    alaert("not");
+  }
+});
 $(document).ready(function () {
   /** Show Upload File */
   $(".show-upload").on("click", function () {

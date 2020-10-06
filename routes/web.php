@@ -30,6 +30,7 @@ Route::patch('/expense/{expense}', 'ExpenseController@update')->name('expense.up
 Route::post('/expense/store', 'ExpenseController@store')->name('expense.store');
 Route::delete('/expense/destroy/{expense}', 'ExpenseController@destroy')->name('expense.destroy');
 Route::get('/expense/graph/sums', 'ExpenseController@getSums')->name('expense.graph.sums');
+Route::get('/expense/graph/avg', 'ExpenseController@getAvg')->name('expense.graph.avg');
 Route::get('/expense/graph/{year}', 'ExpenseController@sumByYearMonth')->name('expense.graph.year');
 Route::get('/expense/graph/{year}/{month}', 'ExpenseController@sumByYearMonth')->name('expense.graph.month');
 

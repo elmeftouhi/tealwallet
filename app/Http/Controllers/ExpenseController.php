@@ -32,7 +32,6 @@ class ExpenseController extends Controller{
         $this->middleware('auth');
     }
     public function index(){
-        dump($this->getAvg());
         return view('expense.index', ['expenses'=> Auth::user()->expenses->sortByDesc('expense_date')]);
     }
 
