@@ -201,8 +201,8 @@ class ExpenseController extends Controller{
 
     public function getAvg(){
         return [
-            'day'       =>  $this->getAvgDay(),
-            'month'     =>  $this->getAvgMonth()
+            'day'       =>  Str::money($this->getAvgDay(),2),
+            'month'     =>  Str::money($this->getAvgMonth(),2)
         ];
     }
 }
