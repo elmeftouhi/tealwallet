@@ -52,7 +52,7 @@ class ExpenseController extends Controller{
         if( empty($request->input('description') ) ) $request->merge(['description' => $category->expense_category]);
 
         Expense::create($request->all());
-        return redirect(route('expense.index'));
+        return redirect(route('home'));
     }
 
     public function show(Expense $expense){

@@ -1,8 +1,7 @@
 <div class="flex justify-between items-center px-3 py-3 ">
     <h1 class="font-sans font-bold subpixel-antialiased text-base text-gray-700 ">
         Expenses
-    </h1>  
-    <span class="text-teal-900 font-bold sum_month">...</span>         
+    </h1>         
 </div>
 <div class="bg-white border rounded m-1 shadow relative">
     <div class="hide flex absolute w-full h-full bg-gray-800 bg-opacity-25">
