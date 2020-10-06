@@ -8,7 +8,12 @@
 
         <div class="relative text-center mb-8">
             <div class="text-center w-full items-center mb-4">
-                <img src="{{ asset('storage/'.auth()->user()->avatar) }}" alt="Masrofi User Photo" class="rounded-full object-center object-cover h-10 w-10 m-auto">
+                <img 
+                    src="@if( Storage::disk('local')->exists(auth()->user()->avatar)) {{ asset('storage/'.auth()->user()->avatar) }} @else https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/system-users-icon.png @endif" 
+                    alt="TealWallet User Avatar {{auth()->user()->avatar}}" 
+                    class="rounded-full object-center object-cover h-10 w-10 m-auto"
+                >
+                
             </div>
             <h2 class="font-bold text-sm">{{ ucfirst( auth()->user()->name ) }}</h2>
             <h3 class="mb-4">Licence : Standard</h3>
