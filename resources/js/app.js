@@ -64,7 +64,6 @@ $(window).on('load', function() {
         }).done(function(response){
             $(".avg_day").html(response.day);
             $(".avg_month").html(response.month);
-            console.log(response);
         }).fail(function(xhr, textStatus, error) {
             console.log(xhr.statusText);
             console.log(textStatus);
@@ -126,7 +125,6 @@ $(document).ready(function(){
 
     $('#avatar').on('change', function(){
         if($(this).val() != ""){
-            console.log($(this).val());
             if($('#'+$(this).attr('data-target')).length > 0){
                 $('#'+$(this).attr('data-target')).submit();
             }
@@ -190,7 +188,6 @@ $(document).ready(function(){
             url         :      url,
             dataType    :     "json",
         }).done(function(response){
-            console.log(response);
             var labels = [];
             var values = [];
             var total = 0;
