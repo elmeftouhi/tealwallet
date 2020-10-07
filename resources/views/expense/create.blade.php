@@ -19,7 +19,17 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="amount">
                 Amount 
             </label>
-        <input value="{{ old('amount') }}" placeholder="0.00" class="shadow text-center appearance-none border rounded w-full py-2 px-3 text-3xl text-white placeholder-white bg-green-400 leading-tight focus:outline-none focus:shadow-outline" id="amount" type="number" step="any" name="amount">
+        <input 
+            value="{{ old('amount') }}" 
+            placeholder="0.00" 
+            class="shadow text-center appearance-none border rounded w-full py-2 px-3 text-3xl text-white placeholder-white bg-green-400 leading-tight focus:outline-none focus:shadow-outline autofocus" 
+            id="amount" 
+            type="number" 
+            step="any" 
+            name="amount" 
+            autofocus="autofocus"
+            tabindex="1"
+        >
             @error('amount')
                 <div class="text-red-600 font-semibold text-sm py-1"> {{ $message }} </div> 
             @enderror

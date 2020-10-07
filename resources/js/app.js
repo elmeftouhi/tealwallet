@@ -71,6 +71,9 @@ $(window).on('load', function() {
             console.log(error);
         });
     } 
+    if($(".autofocus").length){
+        $(".autofocus").focus();  
+    }
 });
 
 
