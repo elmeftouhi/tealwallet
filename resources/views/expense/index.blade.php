@@ -33,7 +33,7 @@
         <div class="flex items-center -mr-2">
             <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative mytable">
                 <thead>
-                    <tr class="sticky top-0 border-b border-gray-300 bg-gray-100 items-center text-sm">
+                    <tr class="sticky top-0 border-b border-gray-300 bg-gray-200 items-center text-sm">
                         <th class="text-center">Date</th>
                         <th class="py-4 text-left">Details</th>
                         <th>Amount</th>
@@ -48,7 +48,7 @@
                     @forelse ($expenses as $expense)
                         <?php
                             if( $day != \Carbon\Carbon::parse($expense->expense_date)->format('d') )
-                                $bg = ($bg === "")? "bg-gray-200":"";
+                                $bg = ($bg === "")? "bg-gray-100":"";
                             
                             $day = \Carbon\Carbon::parse($expense->expense_date)->format('d')
                         ?>
