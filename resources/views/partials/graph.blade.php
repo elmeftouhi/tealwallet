@@ -33,8 +33,8 @@
         </div>
     </div>
 
-    <div class="">
-        <canvas id="myChart" width="100%" height="50"></canvas>
+    <div class="min-h-30">
+        <canvas id="myChart" width="100%"></canvas>
     </div>
 
 </div>
