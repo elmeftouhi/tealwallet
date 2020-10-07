@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use Session;
 
@@ -34,7 +35,12 @@ class ProfileController extends Controller{
     public function upload(Request $r){
         $uploaded = false;
         if($r->hasFile('avatar')){
-            $file = $r->avatar->store('avatar', 'public') ;
+            if(Storage::disk('public')->exists(Auth::user()->avatar)) 
+                Storage::disk('public')->delete(Auth::user()->avatar);
+
+             $file = $r->avatar->store('avatar', 'public') ;
+            
+            
             Auth::user()->update([
                 'avatar'=>$file
             ]);

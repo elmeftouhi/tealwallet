@@ -19,12 +19,21 @@
         <div class="max-w-xs mx-auto m-1 shadow bg-white mb-4">
             <div class="bg-gray-200 relative py-6">
                 <div class="w-xs mx-auto overflow-hidden">
-                    <img 
-                        src="{{ asset('storage/'.auth()->user()->avatar) }}" 
-                        alt="Masrofi User Photo" 
-                        class="rounded-full object-center object-cover w-20 m-auto cursor-pointer hover:shadow hover:opacity-75 border-dashed show-upload"
-                        data-target="avatar"
-                    >
+                    @if( Storage::disk('public')->exists(auth()->user()->avatar) )
+                        <img 
+                            src="{{ asset('storage/'.auth()->user()->avatar) }}" 
+                            alt="Masrofi User Photo" 
+                            class="rounded-full object-center object-cover w-20 m-auto cursor-pointer hover:shadow hover:opacity-75 border-dashed show-upload"
+                            data-target="avatar"
+                        >
+                    @else
+                        <img 
+                            src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/system-users-icon.png" 
+                            alt="Masrofi User Photo" 
+                            class="rounded-full object-center object-cover w-20 m-auto cursor-pointer hover:shadow hover:opacity-75 border-dashed show-upload"
+                            data-target="avatar"
+                        >
+                    @endif
                 </div>
                 <input type="file" name="avatar" id="avatar" class="hidden" data-target="avatar_form">
                 @error('avatar') <p class="text-red-500 text-xs italic text-center">{{ $message }}</p> @enderror
