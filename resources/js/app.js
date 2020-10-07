@@ -264,7 +264,26 @@ $(document).ready(function(){
     });
 
 
-    $("table tbody").sortable();
+    //$("table tbody").sortable();
+    var $categories = $('table tbody');
+    $categories.sortable({
+        cancel: 'thead',
+        stop: () => {
+           var items = $categories.sortable('toArray', {attribute: 'data-id'});
+           var _token = $('meta[name="csrf-token"]').attr('content');
+           $.post(
+                '/category/reorder',
+                {'_token':_token, 'categories':items},
+                function(r){
+                    location.reload();
+                }
+           ).fail(function(r){
+               alert('Request failled');
+               console.log(r);
+           });
+        }
+    });
+
 
     $('#category_destory_btn').on('click', function(e){
         e.preventDefault();

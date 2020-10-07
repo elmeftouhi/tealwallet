@@ -21,6 +21,7 @@ Route::get('/category/edit/{category}', 'ExpenseCategoriesController@edit')->nam
 Route::patch('/category/{category}', 'ExpenseCategoriesController@update')->name('category.update');
 Route::post('/category/store', 'ExpenseCategoriesController@store')->name('category.store');
 Route::delete('/category/destroy/{id}', 'ExpenseCategoriesController@destroy')->name('category.destroy');
+Route::post('/category/reorder', 'ExpenseCategoriesController@reorder');
 
 Route::get('/expense', 'ExpenseController@index')->name('expense.index');
 Route::get('/expense/create', 'ExpenseController@create')->name('expense.create');

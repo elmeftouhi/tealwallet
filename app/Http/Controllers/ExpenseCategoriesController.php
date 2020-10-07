@@ -65,4 +65,13 @@ class ExpenseCategoriesController extends Controller{
         return redirect( route('category') );
     }
 
+    public function reorder(Request $r){
+        foreach($r->categories as $k=>$id){
+            ExpenseCategories::find($id)->update([
+                'level' =>  $k+1
+            ]);
+        }
+        Session::flash('message', 'Category was created!');
+        return 'success';
+    }
 }

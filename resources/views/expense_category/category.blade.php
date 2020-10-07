@@ -27,7 +27,7 @@
             <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
                 <thead>
                     <tr class="sticky top-0 border-b border-gray-300 bg-gray-100 items-center text-sm">
-                        <th class="py-4 px-2 pl-3 text-left w-6"><input type="checkbox" name="" id=""></th>
+                        <th>#</th>
                         <th>Icon</th>
                         <th class="py-4 text-left">Category</th>
                         <th>Status</th>
@@ -36,9 +36,9 @@
                 </thead>
                 <tbody>
                     @forelse ($categories as $category)
-                    <tr class="sticky top-0 border-b border-gray-300 items-center text-sm hover:bg-green-100">
-                            <td class="py-4 px-2 pl-3"><input type="checkbox" name="" id=""></td>
-                            <td class="w-10 text-center text-lg"><span class="text-sm font-bold">{{ $category->level }}</span>  {!! $category->icon !!} </td>
+                    <tr class="sticky top-0 border-b border-gray-300 items-center text-sm hover:bg-green-100 cursor-move" data-id="{{$category->id}}">
+                            <td class="text-center"> <span class="text-sm font-bold">{{ $category->level }}</span> </td>
+                            <td class="w-10 text-center text-lg py-4">  {!! $category->icon !!} </td>
                             <td class="truncate text-xs md:text-base">{{ $category->expense_category }}</td>
                             <td class="px-1">
                                 @if ($category->status === 1)
