@@ -245,6 +245,15 @@ $(document).ready(function(){
               }]
           },
           options: {
+            tooltips:{
+                enabled: true,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) { 
+                        return 'Total Expense : ' + tooltipItems.yLabel;
+                    }
+                }
+            },
               scales: {
                   yAxes: [{
                       ticks: {
@@ -354,8 +363,13 @@ if($("#myChart").length){
         },
         options: {
             tooltips:{
-                mode: 'index',
-                axis: 'y'
+                enabled: true,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) { 
+                        return 'Total Expense : ' + tooltipItems.yLabel;
+                    }
+                }
             },
             scales: {
                 yAxes: [{
