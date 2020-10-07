@@ -17,13 +17,19 @@
     </div>
     <div class="pr-2">
         <ul class="flex items-center flex-1">
-            <li class="px-4 relative">
+            <li class="px-4 relative mr-4">
                 <a href="" class="block text-xl text-teal-900 hover:text-pink-700">
                     <i class="fas fa-bell"></i>
                 </a>
                 <span class="absolute top-0 right-0 rounded-full px-1 text-pink-100 bg-red-600 text-xs mr-1 -mt-1">
                     0
                 </span>
+            </li>
+            <li class="">
+                <a href="" class="block text-xl text-teal-900 hover:text-pink-700 show_full_screen border border-gray-400 py-1 px-2">
+                    <i class="fas fa-expand-alt"></i>
+                    <i class="fas fa-compress-alt hide"></i>
+                </a>
             </li>
         </ul>               
     </div>
