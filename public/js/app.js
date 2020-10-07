@@ -83142,6 +83142,7 @@ $(document).ready(function () {
       console.log(response);
       var labels = [];
       var values = [];
+      var total = 0;
 
       for (var key in response) {
         labels.push(key);
@@ -83152,7 +83153,7 @@ $(document).ready(function () {
       $('.lds-ripple').parent().addClass('hide');
       myChart.data.labels = labels;
       myChart.data.datasets[0].data = values;
-      myChart.data.datasets[0].label = that.val() === "month" ? 'Expense Of ' + thisMonth + '-' + thisYear : 'Expense Of ' + thisYear;
+      myChart.data.datasets[0].label = that.val() === "month" ? 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total : 'Expense Of ' + thisYear + ' Total : ' + total;
       myChart.update();
       config.labels = labels;
       config.data = values;
@@ -83180,16 +83181,18 @@ $(document).ready(function () {
     }).done(function (response) {
       var labels = [];
       var values = [];
+      var total = 0;
 
       for (var key in response) {
         labels.push(key);
         values.push(response[key]);
+        total = parseInt(total) + parseInt(response[key]);
       }
 
       $('.lds-ripple').parent().addClass('hide');
       config.labels = labels;
       config.data = values;
-      config.caption = chart_periode === "month" ? 'Expense Of ' + nextMonth + '-' + nextYear : 'Expense Of ' + nextYear;
+      config.caption = chart_periode === "month" ? 'Expense Of ' + nextMonth + '-' + nextYear + ' Total : ' + total : 'Expense Of ' + nextYear + ' Total : ' + total;
       myChart.data.labels = config.labels;
       myChart.data.datasets[0].data = config.data;
       myChart.data.datasets[0].label = config.caption;
@@ -83345,15 +83348,17 @@ if ($("#myChart").length) {
   }).done(function (response) {
     var labels = [];
     var values = [];
+    var total = 0;
 
     for (var key in response) {
       labels.push(key);
       values.push(response[key]);
+      total = parseInt(total) + parseInt(response[key]);
     }
 
     config.labels = labels;
     config.data = values;
-    config.caption = 'Expense Of ' + thisMonth + '-' + thisYear;
+    config.caption = 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total;
     $('.lds-ripple').parent().addClass('hide'); //console.log(response);
 
     myChart.data.labels = config.labels;
