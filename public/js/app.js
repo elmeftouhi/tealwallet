@@ -83150,6 +83150,10 @@ $(document).ready(function () {
         total = parseInt(total) + parseInt(response[key]);
       }
 
+      total = new Intl.NumberFormat('fr-FR', {
+        style: 'currency',
+        currency: 'Mad'
+      }).format(total);
       $('.lds-ripple').parent().addClass('hide');
       myChart.data.labels = labels;
       myChart.data.datasets[0].data = values;
@@ -83189,6 +83193,10 @@ $(document).ready(function () {
         total = parseInt(total) + parseInt(response[key]);
       }
 
+      total = new Intl.NumberFormat('fr-FR', {
+        style: 'currency',
+        currency: 'Mad'
+      }).format(total);
       $('.lds-ripple').parent().addClass('hide');
       config.labels = labels;
       config.data = values;
@@ -83224,7 +83232,10 @@ $(document).ready(function () {
           mode: 'single',
           callbacks: {
             label: function label(tooltipItems, data) {
-              return 'Total Expense : ' + tooltipItems.yLabel;
+              return 'Total Expense : ' + new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'Mad'
+              }).format(tooltipItems.yLabel);
             }
           }
         },
@@ -83334,7 +83345,10 @@ if ($("#myChart").length) {
         mode: 'single',
         callbacks: {
           label: function label(tooltipItems, data) {
-            return 'Total Expense : ' + tooltipItems.yLabel;
+            return 'Total Expense : ' + new Intl.NumberFormat('fr-FR', {
+              style: 'currency',
+              currency: 'Mad'
+            }).format(tooltipItems.yLabel);
           }
         }
       },
@@ -83370,6 +83384,10 @@ if ($("#myChart").length) {
       total = parseInt(total) + parseInt(response[key]);
     }
 
+    total = new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'Mad'
+    }).format(total);
     config.labels = labels;
     config.data = values;
     config.caption = 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total;
