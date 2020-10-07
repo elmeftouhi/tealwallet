@@ -32,9 +32,9 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('storage/favicon/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('storage/favicon/manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#2c7a7b">
     <meta name="msapplication-TileImage" content="{{ asset('storage/favicon/ms-icon-144x144.png') }}">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#2c7a7b">
 
 
 </head>
