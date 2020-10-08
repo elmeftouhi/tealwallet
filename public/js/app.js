@@ -83471,7 +83471,13 @@ if ($("#myPieChart").length) {
     },
     options: {
       legend: {
-        position: 'bottom'
+        position: 'bottom',
+        align: 'start',
+        display: true,
+        labels: {
+          boxWidth: 10,
+          fontSize: 10
+        }
       }
     }
   });

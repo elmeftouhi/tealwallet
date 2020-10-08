@@ -28,7 +28,11 @@ class ExpenseController extends Controller{
                 'December',
                 ];
     private $hex_colors = [
+        '#319795',
         '#FFA07A',
+        '#EE82EE',
+        '#696969',
+        '#2F4F4F',
         '#DC143C',
         '#008080',
         '#8FBC8F',
