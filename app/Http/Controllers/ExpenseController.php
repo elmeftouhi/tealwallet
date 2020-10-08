@@ -100,6 +100,12 @@ class ExpenseController extends Controller{
         $year = $year === 0? date('Y'): $year;
         $month = $month === 0? date('m'): $month;
 
+        $expenses = [
+            'A'     =>  451,
+            'B'     =>  78,
+            'C'     =>  1542
+        ];
+        return $expenses;   
         $expenses = DB::table('expenses')
                         ->leftJoin('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
                         ->select(DB::raw('sum(amount) as total'), DB::raw('expense_category as expense_category'))
@@ -109,7 +115,7 @@ class ExpenseController extends Controller{
                         ->groupBy(DB::raw('expense_category_id') )
                         ->get()
                         ->toArray();
-        return $expenses;
+        
         $pie = [];
         foreach($expenses as $v){
             $pie[$v->expense_category] = $v->total;
