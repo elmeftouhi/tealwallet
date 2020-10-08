@@ -379,11 +379,13 @@ const app = new Vue({
 
 import Chart from 'chart.js';
 import { timers } from 'jquery';
+import { split } from 'lodash';
 var config = {
     type : 'line',
     caption :   '',
     labels : [],
-    data : []
+    data : [],
+    colors:[]
 };
 
 if($("#myChart").length){
@@ -467,11 +469,11 @@ if($("#myChart").length){
 }
 
 if($("#myPieChart").length){
-
+    var splited = split($(".dates_current").html(), ' - ');
     $('.lds-ripple').parent().removeClass('hide');
     var ctx = document.getElementById('myPieChart');
-    var thisYear = moment().format('YYYY');
-    var thisMonth = moment().format('MM');
+    var thisYear = splited[1]; // moment().format('YYYY');
+    var thisMonth = splited[0]; // moment().format('MM');
     var myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -480,6 +482,11 @@ if($("#myPieChart").length){
                 label: 'Expense Of ' + thisMonth,
                 data: []
             }]
+        },
+        options:{
+            legend:{
+                position: 'right'
+            }
         }
     });
 
@@ -492,20 +499,24 @@ if($("#myPieChart").length){
         var labels = [];
         var values = [];
         var total = 0;
+        var colors = [];
+        var splited;
         for (var key in response){
-            labels.push(key);
+            splited = split(key, "|");
+            labels.push(splited[0]);
+            colors.push(splited[1]);
             values.push(response[key]);
             total = parseInt(total) + parseInt(response[key]);
         }
         total = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'Mad' }).format(total);
         config.labels = labels;
         config.data = values;
+        config.colors = colors;
         config.caption = 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total;
         $('.lds-ripple').parent().addClass('hide');
-        console.log(response);
-
         myPieChart.data.labels=config.labels;
         myPieChart.data.datasets[0].data=config.data;
+        myPieChart.data.datasets[0].backgroundColor=colors;
         myPieChart.data.datasets[0].label = config.caption,
         myPieChart.update();
 

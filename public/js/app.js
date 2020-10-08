@@ -82989,6 +82989,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -83358,11 +83360,13 @@ var app = new Vue({
 });
 
 
+
 var config = {
   type: 'line',
   caption: '',
   labels: [],
-  data: []
+  data: [],
+  colors: []
 };
 
 if ($("#myChart").length) {
@@ -83449,10 +83453,13 @@ if ($("#myChart").length) {
 }
 
 if ($("#myPieChart").length) {
+  var splited = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["split"])($(".dates_current").html(), ' - ');
   $('.lds-ripple').parent().removeClass('hide');
   var ctx = document.getElementById('myPieChart');
-  var thisYear = moment().format('YYYY');
-  var thisMonth = moment().format('MM');
+  var thisYear = splited[1]; // moment().format('YYYY');
+
+  var thisMonth = splited[0]; // moment().format('MM');
+
   var myPieChart = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(ctx, {
     type: 'pie',
     data: {
@@ -83461,6 +83468,11 @@ if ($("#myPieChart").length) {
         label: 'Expense Of ' + thisMonth,
         data: []
       }]
+    },
+    options: {
+      legend: {
+        position: 'right'
+      }
     }
   });
   $.ajax({
@@ -83471,9 +83483,13 @@ if ($("#myPieChart").length) {
     var labels = [];
     var values = [];
     var total = 0;
+    var colors = [];
+    var splited;
 
     for (var key in response) {
-      labels.push(key);
+      splited = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["split"])(key, "|");
+      labels.push(splited[0]);
+      colors.push(splited[1]);
       values.push(response[key]);
       total = parseInt(total) + parseInt(response[key]);
     }
@@ -83484,11 +83500,12 @@ if ($("#myPieChart").length) {
     }).format(total);
     config.labels = labels;
     config.data = values;
+    config.colors = colors;
     config.caption = 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total;
     $('.lds-ripple').parent().addClass('hide');
-    console.log(response);
     myPieChart.data.labels = config.labels;
     myPieChart.data.datasets[0].data = config.data;
+    myPieChart.data.datasets[0].backgroundColor = colors;
     myPieChart.data.datasets[0].label = config.caption, myPieChart.update();
   }).fail(function (xhr, textStatus, error) {
     $("#preloader").remove();

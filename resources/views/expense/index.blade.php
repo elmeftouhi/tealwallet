@@ -9,7 +9,7 @@
     </div>
     <div class="flex items-center p-1 bg-gray-100 rounded-lg">
         <a href="{{ route('expense.month', ["month"=>$dates['prev'][0], "year"=>$dates['prev'][1]]) }}" class="mx-4 block hover:text-gray-500"><i class="fas fa-chevron-left"></i></a>
-        <div class="text-xs">{{ $dates['current'][0] . ' - ' . $dates['current'][1] }}</div>
+        <div class="text-xs dates_current">{{ $dates['current'][0] . ' - ' . $dates['current'][1] }}</div>
         <a href="{{ route('expense.month', ["month"=>$dates['next'][0], "year"=>$dates['next'][1]]) }}" class="mx-4 block hover:text-gray-500"><i class="fas fa-chevron-right"></i></a>
     </div>
 </div>

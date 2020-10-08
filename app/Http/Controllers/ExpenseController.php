@@ -27,6 +27,21 @@ class ExpenseController extends Controller{
                 'November',
                 'December',
                 ];
+    private $hex_colors = [
+        '#FFA07A',
+        '#DC143C',
+        '#008080',
+        '#8FBC8F',
+        '#FF0000',
+        '#8B0000',
+        '#FF4500',
+        '#48D1CC',
+        '#FFA500',
+        '#FF8C00',
+        '#FFE4B5',
+        '#BDB76B',
+        '#32CD32',
+    ];
 
     public function __construct(){
         $this->middleware('auth');
@@ -117,8 +132,8 @@ class ExpenseController extends Controller{
                         ->toArray();
         
         $pie = [];
-        foreach($expenses as $v){
-            $pie[$v->expense_category] = $v->total;
+        foreach($expenses as $k=>$v){
+            $pie[$v->expense_category."|".$this->hex_colors[$k]] = $v->total;
         }
         return json_encode($pie);
     }
