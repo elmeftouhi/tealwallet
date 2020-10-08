@@ -168,15 +168,22 @@ $(document).ready(function(){
     });
 
     $('.show_sidenav').on('click', function(){
-        console.log('Toggle Hide');
-        $('#sidenav').toggleClass('hide');
-        $('#sidenav nav').toggleClass('-ml-64');
+        if($('#sidenav').hasClass('hide')){
+            $('#sidenav').toggleClass('hide');
+            $('#sidenav nav').toggleClass('-ml-64', 300);
+        }else{
+            $('#sidenav nav').toggleClass('-ml-64', 300);
+            $('#sidenav').toggleClass('hide',300);
+            
+        }
+
     });
     
     $('#sidenav').on('click', function(e){
         if(e.target != this) return;
-        $('#sidenav').toggleClass('hide');
-        $('#sidenav nav').toggleClass('-ml-64');
+        $('#sidenav nav').toggleClass('-ml-64', 400);
+        $('#sidenav').toggleClass('hide',400);
+        
     });
 
     /** Chart Js */
