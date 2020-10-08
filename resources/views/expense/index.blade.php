@@ -26,7 +26,7 @@
                     <div></div>
                 </div>                
             </div>
-            <canvas id="myPieChart" width="100%" height="120"></canvas>
+            <canvas id="myPieChart" width="100%" height="80"></canvas>
         </div>
     </div>
 
