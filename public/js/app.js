@@ -83471,7 +83471,7 @@ if ($("#myPieChart").length) {
     },
     options: {
       legend: {
-        position: 'right'
+        position: 'bottom'
       }
     }
   });
