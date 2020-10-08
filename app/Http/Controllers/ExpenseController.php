@@ -33,7 +33,7 @@ class ExpenseController extends Controller{
     }
 
     public function index($month = 0, $year = 0){
-        dump($this->groupByCategory());
+        //dump($this->groupByCategory());
         $list = Auth::user()->expenses();
         $year = $year === 0? date('Y'): $year;
         $month = $month === 0? date('m'): $month;
