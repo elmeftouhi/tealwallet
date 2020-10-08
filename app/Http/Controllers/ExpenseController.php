@@ -96,7 +96,7 @@ class ExpenseController extends Controller{
         return redirect( route('expense.index') );
     }
 
-    public function groupByCategory($month=0, $year=0){
+    public function groupByCategory($year=0, $month=0 ){
         $year = $year === 0? date('Y'): $year;
         $month = $month === 0? date('m'): $month;
 

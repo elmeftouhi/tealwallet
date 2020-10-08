@@ -83465,7 +83465,7 @@ if ($("#myPieChart").length) {
   });
   $.ajax({
     type: "GET",
-    url: "/expense/pie/" + thisMonth + "/" + thisYear,
+    url: "/expense/pie/" + thisYear + "/" + thisMonth,
     dataType: "json"
   }).done(function (response) {
     var labels = [];
@@ -83485,8 +83485,8 @@ if ($("#myPieChart").length) {
     config.labels = labels;
     config.data = values;
     config.caption = 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total;
-    $('.lds-ripple').parent().addClass('hide'); //console.log(response);
-
+    $('.lds-ripple').parent().addClass('hide');
+    console.log(response);
     myPieChart.data.labels = config.labels;
     myPieChart.data.datasets[0].data = config.data;
     myPieChart.data.datasets[0].label = config.caption, myPieChart.update();
