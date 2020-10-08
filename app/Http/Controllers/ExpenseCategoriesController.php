@@ -60,8 +60,8 @@ class ExpenseCategoriesController extends Controller{
 
     public function destroy($id){
         
-        ExpenseCategories::destroy($id);
-        Session::flash('message', 'Category was destroyed!'); 
+        //ExpenseCategories::destroy($id);
+        Session::flash('message', 'Category was not destroyed!'); 
         return redirect( route('category') );
     }
 
