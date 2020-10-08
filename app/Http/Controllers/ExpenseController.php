@@ -108,7 +108,7 @@ class ExpenseController extends Controller{
         //return $expenses;   
         $expenses = DB::table('expenses')
                         ->leftJoin('expense_categories', 'expense_categories.id', '=', 'expenses.expense_category_id')
-                        ->select(DB::raw('expense_category_id'), DB::raw('sum(amount) as total'), DB::raw('expense_category as expense_category'))
+                        ->select(DB::raw('sum(expenses.amount) as total'), DB::raw('expense_categories.expense_category as expense_category'))
                         ->whereYear('expenses.expense_date', '=', $year)
                         ->whereMonth('expenses.expense_date', '=', $month)
                         ->where('expenses.user_id', Auth::id())
