@@ -19,7 +19,7 @@
 @section('content')
 
     <div class="card m-1">
-        <div class="min-h-30 relative">
+        <div class="relative">
             <div class="flex absolute w-full h-full bg-gray-800 bg-opacity-25">
                 <div class="lds-ripple m-auto">
                     <div></div>
