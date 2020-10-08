@@ -17,7 +17,7 @@
     </div>
     <div class="pr-2">
         <ul class="flex items-center flex-1">
-            <li class="px-4 relative mr-4">
+            <li class="px-4 relative mr-2">
                 <a href="" class="block text-xl text-teal-900 hover:text-pink-700">
                     <i class="fas fa-bell"></i>
                 </a>
@@ -26,7 +26,7 @@
                 </span>
             </li>
             <li class="">
-                <a href="" class="block text-xl text-teal-900 hover:text-pink-700 show_full_screen border border-gray-400 py-1 px-2">
+                <a href="" class="block text-xl text-teal-900 hover:text-pink-700 show_full_screen border border-gray-400 py-2 px-3 rounded">
                     <i class="fas fa-expand-alt"></i>
                     <i class="fas fa-compress-alt hide"></i>
                 </a>
