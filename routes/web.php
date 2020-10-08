@@ -24,7 +24,7 @@ Route::delete('/category/destroy/{id}', 'ExpenseCategoriesController@destroy')->
 Route::post('/category/reorder', 'ExpenseCategoriesController@reorder');
 
 Route::get('/expense', 'ExpenseController@index')->name('expense.index');
-Route::get('/expense/{month}/{year}', 'ExpenseController@index')->name('expense.month');
+
 Route::get('/expense/create', 'ExpenseController@create')->name('expense.create');
 Route::get('/expense/create/{id_category}', 'ExpenseController@create')->name('expense.create_with_category');
 Route::get('/expense/edit/{expense}', 'ExpenseController@edit')->name('expense.edit');
@@ -35,7 +35,7 @@ Route::get('/expense/graph/sums', 'ExpenseController@getSums')->name('expense.gr
 Route::get('/expense/graph/avg', 'ExpenseController@getAvg')->name('expense.graph.avg');
 Route::get('/expense/graph/{year}', 'ExpenseController@sumByYear')->name('expense.graph.year');
 Route::get('/expense/graph/{year}/{month}', 'ExpenseController@sumByYearMonth')->name('expense.graph.month');
-
+Route::get('/expense/{month}/{year}', 'ExpenseController@index')->name('expense.month');
 
 Route::get('/user/edit', 'ProfileController@edit')->name('user.edit');
 Route::patch('/user/update', 'ProfileController@update')->name('user.update');
