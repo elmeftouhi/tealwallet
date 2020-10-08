@@ -109,7 +109,7 @@ class ExpenseController extends Controller{
                         ->groupBy(DB::raw('expense_category_id') )
                         ->get()
                         ->toArray();
-
+        return $expenses;
         $pie = [];
         foreach($expenses as $v){
             $pie[$v->expense_category] = $v->total;
