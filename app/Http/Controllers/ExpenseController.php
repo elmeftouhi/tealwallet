@@ -31,7 +31,9 @@ class ExpenseController extends Controller{
     public function __construct(){
         $this->middleware('auth');
     }
+
     public function index($month = 0, $year = 0){
+
         $list = Auth::user()->expenses();
         $year = $year === 0? date('Y'): $year;
         $month = $month === 0? date('m'): $month;
@@ -50,15 +52,6 @@ class ExpenseController extends Controller{
         ];
 
         return view('expense.index', ['expenses'=> $expenses->get(), 'dates'=>$dates]);
-
-        /*
-        if($month === 0){
-            return view('expense.index', ['expenses'=> Auth::user()->expenses->sortByDesc('expense_date')]);
-        }else{   
-            $expenses = $list->whereMonth('expense_date', '=', $month);
-            return view('expense.index', ['expenses'=> $expenses->get()]);
-        }
-        */
     }
 
     public function create($id_category=0){
@@ -101,6 +94,27 @@ class ExpenseController extends Controller{
         else
             Session::flash('message', 'Expense was not destroyed!'); 
         return redirect( route('expense.index') );
+    }
+
+    public function groupByCategory($month=0, $year=0){
+        $year = $year === 0? date('Y'): $year;
+        $month = $month === 0? date('m'): $month;
+
+        $expenses = DB::table('expenses')
+                        ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
+                        ->select(DB::raw('sum(amount) as total'), DB::raw('expense_category as expense_category'))
+                        ->whereYear('expense_date', '=', $year)
+                        ->whereMonth('expense_date', '=', $month)
+                        ->where('user_id', Auth::id())
+                        ->groupBy(DB::raw('expense_category_id') )
+                        ->get()
+                        ->toArray();
+
+        $pie = [];
+        foreach($expenses as $v){
+            $pie[$v->expense_category] = $v->total;
+        }
+        return json_encode($pie);
     }
 
     public function sumByYear($year = 0, $month = 0){
@@ -169,8 +183,6 @@ class ExpenseController extends Controller{
             }
             return json_encode($days_total); 
         }
-
-
     }
 
     public function getSumToday(){

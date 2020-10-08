@@ -385,6 +385,7 @@ var config = {
     labels : [],
     data : []
 };
+
 if($("#myChart").length){
     $('.lds-ripple').parent().removeClass('hide');
     var ctx = document.getElementById('myChart');
@@ -463,9 +464,55 @@ if($("#myChart").length){
         console.log(textStatus);
         console.log(error);
     });
-
-
-
-
 }
 
+if($("#myPieChart").length){
+
+    $('.lds-ripple').parent().removeClass('hide');
+    var ctx = document.getElementById('myPieChart');
+    var thisYear = moment().format('YYYY');
+    var thisMonth = moment().format('MM');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Expense Of ' + thisMonth,
+                data: []
+            }]
+        }
+    });
+
+
+    $.ajax({
+        type        :     "GET",
+        url         :      "/expense/pie/"+thisMonth+"/"+thisYear,
+        dataType    :     "json",
+    }).done(function(response){
+        var labels = [];
+        var values = [];
+        var total = 0;
+        for (var key in response){
+            labels.push(key);
+            values.push(response[key]);
+            total = parseInt(total) + parseInt(response[key]);
+        }
+        total = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'Mad' }).format(total);
+        config.labels = labels;
+        config.data = values;
+        config.caption = 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total;
+        $('.lds-ripple').parent().addClass('hide');
+        //console.log(response);
+
+        myPieChart.data.labels=config.labels;
+        myPieChart.data.datasets[0].data=config.data;
+        myPieChart.data.datasets[0].label = config.caption,
+        myPieChart.update();
+
+    }).fail(function(xhr, textStatus, error) {
+        $("#preloader").remove();
+        console.log(xhr.statusText);
+        console.log(textStatus);
+        console.log(error);
+    });
+}

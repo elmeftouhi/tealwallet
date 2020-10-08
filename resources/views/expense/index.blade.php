@@ -17,6 +17,19 @@
 
 
 @section('content')
+
+    <div class="card m-1">
+        <div class="min-h-30 relative">
+            <div class="flex absolute w-full h-full bg-gray-800 bg-opacity-25">
+                <div class="lds-ripple m-auto">
+                    <div></div>
+                    <div></div>
+                </div>                
+            </div>
+            <canvas id="myPieChart" width="100%"></canvas>
+        </div>
+    </div>
+
     <div class="rounded bg-white shadow text-gray-700 m-1 overflow-hidden pb-16 relative">
         <div class="flex justify-between items-center py-4 px-3">
             <div class="relative">
