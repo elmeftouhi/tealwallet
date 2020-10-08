@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     public function expenses(){
-        return $this->hasMany('App\Expense', 'user_id');
+        return $this->hasMany('App\Expense', 'user_id')->orderBy('expense_date', 'desc');
     }
 
 }

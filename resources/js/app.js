@@ -79,27 +79,31 @@ $(window).on('load', function() {
 function toggleFullScreen() {
     if (!document.fullscreenElement &&    // alternative standard method
         !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
-      if (document.documentElement.requestFullscreen) {
+        if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
-      } else if (document.documentElement.msRequestFullscreen) {
+        } else if (document.documentElement.msRequestFullscreen) {
         document.documentElement.msRequestFullscreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
+        } else if (document.documentElement.mozRequestFullScreen) {
         document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullscreen) {
+        } else if (document.documentElement.webkitRequestFullscreen) {
         document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-      }
+        }
     } else {
-      if (document.exitFullscreen) {
+        if (document.exitFullscreen) {
         document.exitFullscreen();
-      } else if (document.msExitFullscreen) {
+        } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
+        } else if (document.mozCancelFullScreen) {
         document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
+        } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
-      }
+        }
     }
-  }
+}
+
+function money(amount){
+    return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'Mad' }).format(amount);
+}
 
 $(document).ready(function(){
 
@@ -136,7 +140,7 @@ $(document).ready(function(){
         
         var target = $(this).attr("data-target");
         var r = $(this).val().toLowerCase();
-
+        var total = 0;
         $("table."+target+" tbody tr").each(function(){
             var isExists = false;
             var tr = $(this);
@@ -152,9 +156,12 @@ $(document).ready(function(){
                 tr.addClass('hidden');
             }else{
                 tr.removeClass('hidden');
+                total = parseInt(tr.attr('data-amount'))+parseInt(total);
+                $(".total_amount").html(money(total));
             }
         });
     });
+
 
     $(".alert-close").on("click", function(){
         $("." + $(this).attr("data-target") ).remove();

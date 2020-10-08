@@ -5,12 +5,12 @@
         <a href="{{ route('home') }}" class="rounded-full py-2 px-3 bg-gray-600 mr-2 text-gray-100">
             <i class="fas fa-arrow-left"></i>
         </a>
-        <span> Expense </span>       
+        <span> Expense </span>   
     </div>
     <div class="flex items-center p-1 bg-gray-100 rounded-lg">
-        <a href="" class="mx-4 block hover:text-gray-500"><i class="fas fa-chevron-left"></i></a>
-        <div class="text-xs">{{ Carbon\Carbon::parse(date('d-m-Y'))->format('m-Y') }}</div>
-        <a href="" class="mx-4 block hover:text-gray-500"><i class="fas fa-chevron-right"></i></a>
+        <a href="{{ route('expense.month', ["month"=>$dates['prev'][0], "year"=>$dates['prev'][1]]) }}" class="mx-4 block hover:text-gray-500"><i class="fas fa-chevron-left"></i></a>
+        <div class="text-xs">{{ $dates['current'][0] . ' - ' . $dates['current'][1] }}</div>
+        <a href="{{ route('expense.month', ["month"=>$dates['next'][0], "year"=>$dates['next'][1]]) }}" class="mx-4 block hover:text-gray-500"><i class="fas fa-chevron-right"></i></a>
     </div>
 </div>
 @endsection
@@ -43,16 +43,16 @@
                 <tbody>
                     <?php
                         $day = 0;
-                        $bg = "";
+                        $bg = "bg-gray-100";
                     ?>
                     @forelse ($expenses as $expense)
                         <?php
                             if( $day != \Carbon\Carbon::parse($expense->expense_date)->format('d') )
-                                $bg = ($bg === "")? "bg-gray-100":"";
+                                $bg = ($bg === "bg-gray-100")? "":"bg-gray-100";
                             
                             $day = \Carbon\Carbon::parse($expense->expense_date)->format('d')
                         ?>
-                        <tr class="sticky top-0 {{ $bg }} border-b border-gray-300 items-center text-xs hover:bg-green-100">
+                        <tr class="sticky top-0 {{ $bg }} border-b border-gray-300 items-center text-xs hover:bg-green-100" data-amount="{{$expense->amount}}">
                             <td class="w-12 text-center py-2">{{ \Carbon\Carbon::parse($expense->expense_date)->format('d M') }} </td>
                             <td>{{ $expense->description }}</td>
                             <td class="w-16 px-1 text-right text-teal-800 font-bold">@money( $expense->amount )</td>
@@ -72,7 +72,7 @@
         </div>
 
         <div class="absolute bottom-0 w-full bg-teal-800 text-white py-2 text-right pr-4">
-            Total : @money( $expenses->sum('amount') )
+            Total : <span class="total_amount">@money( $expenses->sum('amount') )</span>
         </div>
 
     </div>
