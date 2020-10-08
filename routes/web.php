@@ -34,8 +34,9 @@ Route::delete('/expense/destroy/{expense}', 'ExpenseController@destroy')->name('
 Route::get('/expense/graph/sums', 'ExpenseController@getSums')->name('expense.graph.sums');
 Route::get('/expense/graph/avg', 'ExpenseController@getAvg')->name('expense.graph.avg');
 Route::get('/expense/graph/{year}', 'ExpenseController@sumByYear')->name('expense.graph.year');
-Route::get('/expense/pie/{year}/{month}', 'ExpenseController@groupByCategory')->name('expense.pie');
 Route::get('/expense/graph/{year}/{month}', 'ExpenseController@sumByYearMonth')->name('expense.graph.month');
+Route::get('/expense/pie/{year}/{month}', 'ExpenseController@groupByCategory')->name('expense.pie');
+
 
 Route::get('/expense/{month}/{year}', 'ExpenseController@index')->name('expense.month');
 
