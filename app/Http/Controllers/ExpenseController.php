@@ -112,7 +112,7 @@ class ExpenseController extends Controller{
                         ->whereYear('expenses.expense_date', '=', $year)
                         ->whereMonth('expenses.expense_date', '=', $month)
                         ->where('expenses.user_id', Auth::id())
-                        ->groupBy(DB::raw('expenses.expense_category_id') )
+                        ->groupBy(DB::raw('expense_categories.expense_category') )
                         ->get()
                         ->toArray();
         
