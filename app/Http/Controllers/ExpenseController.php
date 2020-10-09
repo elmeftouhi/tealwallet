@@ -139,7 +139,7 @@ class ExpenseController extends Controller{
         $pie = [];
         $others = 0;
         foreach($expenses as $k=>$v){
-            if($k < 4){
+            if($k < 5){
                 $pie[$v->expense_category."|".$this->hex_colors[$k]] = $v->total;
             }else{
                 $others += $v->total;
@@ -147,7 +147,7 @@ class ExpenseController extends Controller{
             
         }
         if( $others > 0 )
-            $pie["Others|".$this->hex_colors[4]] = $others;
+            $pie["Others|".$this->hex_colors[5]] = $others;
 
         return json_encode($pie);
     }
