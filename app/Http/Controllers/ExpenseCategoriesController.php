@@ -18,7 +18,8 @@ class ExpenseCategoriesController extends Controller{
                         'restaurant'        =>  '<i class="fas fa-utensils"></i>',
                         'renting'           =>  '<i class="fas fa-house-damage"></i>',
                         'Eau & Electricity' =>  '<i class="fas fa-charging-station"></i>',
-                        'internet'          =>  '<i class="fab fa-internet-explorer"></i>'
+                        'internet'          =>  '<i class="fab fa-internet-explorer"></i>',
+                        'Phone'             =>  '<i class="fas fa-phone-square-alt"></i>'
                     ];
 
     public function __construct(){
