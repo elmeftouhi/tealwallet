@@ -51,12 +51,41 @@
         </div>
 
 
-        <div class="flex mt-6 mb-6">
+        <div class="flex mt-1 mb-6">
             <label class="flex items-center">
               <input type="checkbox" class="form-checkbox" name="status" @if($category->status) checked @endif>
               <span class="ml-2">Enable / Disable</span>
             </label>
         </div>
+
+        <div class="flex mt-1 mb-1">
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="is_budget" @if($category->is_budget) checked @endif>
+              <span class="ml-2">Budget / Month</span>
+            </label>
+        </div>
+        <div class="mb-4">
+            <input value="{{ $category->budget_amount }}" class="text-center shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="budget_amount" type="number" placeholder="0" name="budget_amount">
+        </div>
+        <?php 
+            $total_this_month = $category->month_expenses()->sum("amount");
+            $diff = $category->budget_amount - $total_this_month;
+            $percentage = 0;
+            if($category->budget_amount-$total_this_month >= 0 ){
+                $percentage = ( ($category->month_expenses()->sum("amount") / $category->budget_amount) * 100 ) . '%';
+            }else{
+                $percentage = '100%';
+            }
+                
+        ?>
+
+        <div class="h-4 bg-gray-200 w-full mb-12 mt-8 py-1 px-1 items-center rounded-full relative">
+            <div class="{{ $diff > 0? 'bg-teal-900':'bg-red-600' }} h-2 rounded-full max-w-full" style="width: {{ $percentage }}"></div>
+            <div class="text-center w-full absolute top-0 left-0 text-teal-800 -mt-5 text-xs">
+                {!! ($category->budget_amount - $total_this_month) > 0 ? '<span class="text-green-600">' . $percentage . ' (Amount left : +' . $diff . ')</span>': '<span class="text-red-600">(' . $percentage . ' Amount exceed : ' . $diff . ')</span>' !!}
+            </div>
+        </div>
+
         <div class="flex items-center justify-between">
             <button class="bg-teal-500 active:bg-teal-800 active:shadow-inner hover:bg-teal-700 text-white font-bold py-2 px-4 rounded w-1/2" type="submit">
                 Save

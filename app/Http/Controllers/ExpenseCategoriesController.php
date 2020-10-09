@@ -38,6 +38,8 @@ class ExpenseCategoriesController extends Controller{
 
     public function update(Request $r, ExpenseCategories $category){
         $r->merge(array('status' => $r->has('status') ? true : false));
+        $r->merge(array('is_budget' => $r->has('is_budget') ? true : false));
+        $r->merge(array('budget_amount' => is_null($r->input('budget_amount')) ? 0 : $r->input('budget_amount')));
         $category->update($r->all());
         Session::flash('message', 'Category was updated!');
         return redirect( route('category') );
