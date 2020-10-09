@@ -132,13 +132,23 @@ class ExpenseController extends Controller{
                         ->whereMonth('expenses.expense_date', '=', $month)
                         ->where('expenses.user_id', Auth::id())
                         ->groupBy(DB::raw('expense_categories.expense_category') )
+                        ->orderBy('total', 'desc')
                         ->get()
                         ->toArray();
         
         $pie = [];
+        $others = 0;
         foreach($expenses as $k=>$v){
-            $pie[$v->expense_category."|".$this->hex_colors[$k]] = $v->total;
+            if($k < 4){
+                $pie[$v->expense_category."|".$this->hex_colors[$k]] = $v->total;
+            }else{
+                $others += $v->total;
+            }
+            
         }
+        if( $others > 0 )
+            $pie["Others|".$this->hex_colors[4]] = $others;
+
         return json_encode($pie);
     }
 
