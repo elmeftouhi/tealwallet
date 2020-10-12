@@ -44,7 +44,7 @@
             </p>
 
             @if($category->is_budget)
-                <div class="h-2 bg-gray-200 w-full mt-8 py-1 px-1 items-center rounded-full relative">
+                <div class="h-2 bg-gray-200 w-full mt-8 px-1 items-center rounded-full relative" style="padding-top: 2px; padding-bottom: 1px">
                     <div class="{{ $diff > 0? 'bg-teal-900':'bg-red-600' }} h-1 rounded-full max-w-full" style="width: {{ $percentage }}"></div>
                     <div class="text-center w-full absolute top-0 left-0 text-teal-800 -mt-5 text-xs">
                         {!! $diff > 0 ? '<span class="text-green-600">' . $percentage . ' </span>': '<span class="text-red-600">(' . $percentage . ')</span>' !!}
