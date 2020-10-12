@@ -6,10 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <?php $time = Carbon\Carbon::now()->timestamp; ?>
-    <!-- <link href='{{ asset("css/jquery.mobile.min.css?v=$time") }}' rel="stylesheet" type="text/css"> -->
     
-       <script src='{{ asset("js/app.js?v=$time") }}' defer></script>
-    <script src="{{ asset('js/jquery.mobile.min.js') }}" defer></script>
+    <script src='{{ asset("js/app.js?v=$time") }}' defer></script>
     <script src="{{ asset('js/notify.min.js') }}" defer></script>
 
 
