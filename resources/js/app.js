@@ -8,7 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.moment = require('moment');
-
+window.hammer = require('hammerjs');
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -27,6 +27,22 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+/** HAMMER JS */
+// Get a reference to an element.
+var square = document.querySelector('#app');
+
+// Create an instance of Hammer with the reference.
+var hammer = new Hammer(square);
+
+// Subscribe to a quick start event: press, tap, or doubletap.
+// For a full list of quick start events, read the documentation.
+hammer.on('press', function(e) {
+  e.target.classList.toggle('expand');
+  console.log("You're pressing me!");
+  console.log(e);
+});
+
 
 function doSearch() {
     var q = document.getElementById("q");
