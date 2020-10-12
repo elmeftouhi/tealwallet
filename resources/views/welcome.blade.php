@@ -30,14 +30,14 @@
         ?>
 
         <a href="{{ route('expense.create_with_category', ['id_category'=>$category->id]) }}" 
-            class="block rounded-lg p-5 transition-all border bg-white mb-4 shadow-md transform hover:bg-gray-200 active:bg-gray-300 cursor-pointer @if($total_this_month > 0) bg-teal-400 hover:bg-teal-300 active:bg-teal-500 @endif" 
+            class="block rounded-lg py-5 px-2 sm:p-5 transition-all border bg-white mb-4 shadow-md transform hover:bg-gray-200 active:bg-gray-300 cursor-pointer @if($total_this_month > 0) bg-teal-400 hover:bg-teal-300 active:bg-teal-500 @endif" 
             style="break-inside: avoid"
         >
             <div class="text-2xl">
                 {!! $category->icon !!}
             </div>
-            <p class="text-sm font-medium font-semibold uppercase tracking-wide mt-2">
-                {{ $category->expense_category . ' ' . $percentage }}
+            <p class="text-xs sm:text-sm font-medium font-semibold uppercase tracking-wide mt-2">
+                {{ $category->expense_category }}
             </p>
             <p class="text-right text-teal-600 font-bold text-base">
                 @money ( $total_this_month )
