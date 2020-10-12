@@ -11,7 +11,7 @@
     </a>
     <a href="{{ route('expense.index')}}" class="w-1/2 card text-center relative mb-1 pt-4 pb-8">
         <span class="font-semibold text-xl lg:text-base sum_month">...</span>
-        <div class="text-center text-red-600 absolute bottom-0 right-0 mr-2 mb-2" style="font-size: 12px">
+        <div class="text-center text-red-600 absolute bottom-0 right-0 mr-2 mb-2" style="font-size: 10px">
             Avg : 
             <span class="avg_month">...</span>
             /Month
