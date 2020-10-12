@@ -83103,7 +83103,15 @@ function money(amount) {
 }
 
 $(document).ready(function () {
+  /** On Swipe */
+  $("main").on('swipeleft', function (e) {
+    alert('swiped left');
+  });
+  $("main").on('swiperight', function (e) {
+    alert('swiped right');
+  });
   /** Show Full Screen */
+
   $('.show_full_screen').on('click', function (e) {
     e.preventDefault();
     toggleFullScreen();
