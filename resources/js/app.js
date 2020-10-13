@@ -168,6 +168,15 @@ $(document).ready(function(){
         $("." + $(this).attr("data-target") ).remove();
     });
 
+    $(".notifications").on("click", function(e){
+        if(e.target != this) return;
+        $(".notifications").addClass('hide');
+    });
+
+    $(".notifications_show").on("click", function(){
+        $(".notifications").removeClass('hide');
+    });
+
     $('.show_sidenav').on('click', function(){
         if($('#sidenav').hasClass('hide')){
             $('#sidenav').toggleClass('hide');
@@ -397,7 +406,7 @@ var config = {
 };
 
 if($("#myChart").length){
-    $('.lds-ripple').parent().removeClass('hide');
+    $('#myChart .lds-ripple').parent().removeClass('hide');
     var ctx = document.getElementById('myChart');
     var thisYear = moment().format('YYYY');
     var thisMonth = moment().format('MM');
@@ -460,7 +469,7 @@ if($("#myChart").length){
         config.labels = labels;
         config.data = values;
         config.caption = 'Expense Of ' + thisMonth + '-' + thisYear + ' Total : ' + total;
-        $('.lds-ripple').parent().addClass('hide');
+        $('#myChart .lds-ripple').parent().addClass('hide');
         //console.log(response);
 
         myChart.data.labels=config.labels;
