@@ -41,4 +41,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Expense', 'user_id')->orderBy('expense_date', 'desc');
     }
 
+    public function alerts(){
+        return $this->hasMany('App\Alert', 'user_id');
+    }
+
 }

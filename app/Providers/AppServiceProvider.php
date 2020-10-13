@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
+use App\Observers\ExpenseObserver;
+use App\Expense;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
         if($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
+
+        Expense::observe(ExpenseObserver::class);
 
     }
 }

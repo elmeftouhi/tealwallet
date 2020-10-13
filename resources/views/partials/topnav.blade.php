@@ -21,9 +21,11 @@
                 <a href="" class="block text-xl text-teal-900 hover:text-pink-700">
                     <i class="fas fa-bell"></i>
                 </a>
-                <span class="absolute top-0 right-0 rounded-full px-1 text-pink-100 bg-red-600 text-xs mr-1 -mt-1">
-                    0
-                </span>
+                @if(auth()->user()->alerts->where('unread', 0)->count() > 0)
+                    <span class="absolute top-0 right-0 rounded-full px-1 text-pink-100 bg-red-600 text-xs mr-1 -mt-1">
+                        {{ auth()->user()->alerts->count() }}
+                    </span>
+                @endif
             </li>
             <li class="">
                 <a href="" class="block text-xl text-teal-900 hover:text-pink-700 show_full_screen border border-gray-400 py-2 px-3 rounded">

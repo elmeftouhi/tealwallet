@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Expense extends Model
 {
     protected $fillable = [
@@ -11,6 +10,6 @@ class Expense extends Model
     ];
 
     public function expense_category(){
-        return $this->belongsTo(ExpenseCategories::class);
+        return $this->belongsTo('App\ExpenseCategories', 'expense_category_id');
     }
 }
