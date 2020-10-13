@@ -17,7 +17,7 @@ class CreateAlertsTable extends Migration
             $table->id();
             $table->string('alert_message');
             $table->boolean('unread')->default(0);
-            $table->unsignedBigInteger('user_id');
+            $table->bigIncrements('user_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
