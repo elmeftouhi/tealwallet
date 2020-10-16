@@ -79,13 +79,13 @@ class ExpenseController extends Controller{
         $year = $r->year;
         $month = $r->month;
         if( is_null( $r->search ) ){
-            if( $r->expense_category === -1 ){
+            if( $r->expense_category == '-1' ){
                 $expenses = $list->whereYear('expense_date', '=', $year)->whereMonth('expense_date', '=', $month);
             }else{
                 $expenses = $list->where('expense_category_id', $r->expense_category )->whereYear('expense_date', '=', $year)->whereMonth('expense_date', '=', $month);
             }
         }else{
-            if( $r->expense_category === '-1' ){
+            if( $r->expense_category == '-1' ){
                 $expenses = $list
                                 ->where('description', 'like', '%'.$r->search.'%')
                                 ->whereYear('expense_date', '=', $year)

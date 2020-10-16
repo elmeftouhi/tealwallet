@@ -39,21 +39,21 @@
                     data-target="mytable" 
                     placeholder="Search"
                     name="search"
+                    value="<?= isset($_GET['search'])? $_GET['search']: '' ?>"
                 >
                 <span class="absolute top-0 left-0 mt-2 ml-3 text-gray-600">
                     <i class="fas fa-search"></i>
                 </span>
                 <div class="border-2 py-1 px-1 rounded-md text-sm w-1/2 mr-1">
-                    <select name="expense_category" class="w-full" id="">
+                    <select name="expense_category" class="w-full" id="" onchange="this.form.submit()">
                         <option value="-1">-- Select</option>
                         @foreach ($expense_categories as $category)
-                            <option value="{{$category->id}}">{{$category->expense_category}}</option>
+                            <option <?= isset($_GET['expense_category'])? $_GET['expense_category'] == $category->id? 'selected': '': '' ?> value="{{$category->id}}">{{$category->expense_category}}</option>
                         @endforeach
                     </select>
                     <input type="hidden" name="year" value="{{ $dates['current'][1] }}">
                     <input type="hidden" name="month" value="{{ $dates['current'][0] }}">
                 </div>
-                <button>go</button>
             </form>
             <a 
                 href="{{ route('expense.create') }}" 
