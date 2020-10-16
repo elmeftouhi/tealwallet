@@ -51,7 +51,7 @@ class ExpenseController extends Controller{
         $this->middleware('auth');
     }
 
-    public function index($month = 0, $year = 0, $category = 0){
+    public function index($month = 0, $year = 0){
         //dump($this->groupByCategory());
         $list = Auth::user()->expenses();
         $year = $year === 0? date('Y'): $year;
