@@ -36,7 +36,6 @@
     <meta name="msapplication-TileImage" content="{{ asset('storage/favicon/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#2c7a7b">
 
-    @livewireStyles
 </head>
 <body>
     <div id="app" class="flex flex-col mx-auto overflow-hidden h-full max-w-md bg-gray-100 text-gray-800 border-l border-r relative">
@@ -59,7 +58,5 @@
             @yield('content')
         </main>
     </div>
-    
-    @livewireScripts
 </body>
 </html>
