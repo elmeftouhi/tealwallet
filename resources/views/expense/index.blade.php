@@ -32,13 +32,33 @@
 
     <div class="rounded bg-white shadow text-gray-700 m-1 overflow-hidden pb-16 relative">
         <div class="flex justify-between items-center py-4 px-3">
-            <div class="relative">
-                <input type="text" class="border py-1 pl-8 rounded-md placeholder-gray-400 focus:outline-none focus:border-gray-500 active:shadow-inner input_search" data-target="mytable" placeholder="Search">
+            <form method="GET" action="{{ route('expense.search') }}" class="flex items-center relative flex-1 m-0" id="expense.search">
+                <input 
+                    type="text" 
+                    class="border py-1 pl-8 w-1/2 mr-1 rounded-md placeholder-gray-400 focus:outline-none focus:border-gray-500 active:shadow-inner input_search" 
+                    data-target="mytable" 
+                    placeholder="Search"
+                    name="search"
+                >
                 <span class="absolute top-0 left-0 mt-2 ml-3 text-gray-600">
                     <i class="fas fa-search"></i>
                 </span>
-            </div>
-            <a href="{{ route('expense.create') }}" class="flex-shrink-0 boder text-white rounded-md py-2 px-3 focus:outline-none bg-teal-500 active:bg-teal-800 active:shadow-inner hover:bg-teal-700">
+                <div class="border-2 py-1 px-1 rounded-md text-sm w-1/2 mr-1">
+                    <select name="expense_category" class="w-full" id="">
+                        <option value="-1">-- Select</option>
+                        @foreach ($expense_categories as $category)
+                            <option value="{{$category->id}}">{{$category->expense_category}}</option>
+                        @endforeach
+                    </select>
+                    <input type="hidden" name="year" value="{{ $dates['current'][1] }}">
+                    <input type="hidden" name="month" value="{{ $dates['current'][0] }}">
+                </div>
+                <button>go</button>
+            </form>
+            <a 
+                href="{{ route('expense.create') }}" 
+                class="flex-shrink-0 boder text-white text-center rounded-md py-2 px-3 w-10 bg-teal-500 focus:outline-none active:bg-teal-800 active:shadow-inner hover:bg-teal-700"
+            >
                 <i class="fas fa-plus"></i>
             </a>
         </div>

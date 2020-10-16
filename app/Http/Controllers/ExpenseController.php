@@ -51,7 +51,7 @@ class ExpenseController extends Controller{
         $this->middleware('auth');
     }
 
-    public function index($month = 0, $year = 0){
+    public function index($month = 0, $year = 0, $category = 0){
         //dump($this->groupByCategory());
         $list = Auth::user()->expenses();
         $year = $year === 0? date('Y'): $year;
@@ -70,7 +70,50 @@ class ExpenseController extends Controller{
             'next'      =>  [$nextMonth, $nextYear]
         ];
 
-        return view('expense.index', ['expenses'=> $expenses->get(), 'dates'=>$dates]);
+        return view('expense.index', ['expenses'=> $expenses->get(), 'dates'=>$dates, 'expense_categories'=>ExpenseCategories::orderBy('level', 'asc')->get()]);
+    }
+
+    public function search(Request $r){
+
+        $list = Auth::user()->expenses();
+        $year = $r->year;
+        $month = $r->month;
+        if( is_null( $r->search ) ){
+            if( $r->expense_category === -1 ){
+                $expenses = $list->whereYear('expense_date', '=', $year)->whereMonth('expense_date', '=', $month);
+            }else{
+                $expenses = $list->where('expense_category_id', $r->expense_category )->whereYear('expense_date', '=', $year)->whereMonth('expense_date', '=', $month);
+            }
+        }else{
+            if( $r->expense_category === '-1' ){
+                $expenses = $list
+                                ->where('description', 'like', '%'.$r->search.'%')
+                                ->whereYear('expense_date', '=', $year)
+                                ->whereMonth('expense_date', '=', $month);
+            }else{
+                $expenses = $list
+                                ->where('description', 'like', '%'.$r->search.'%')
+                                ->where('expense_category_id', $r->expense_category )
+                                ->whereYear('expense_date', '=', $year)
+                                ->whereMonth('expense_date', '=', $month);
+            }
+        }
+        
+
+        $date = Carbon::parse($year . '-' . $month);
+        $nextMonth = $date->addMonthsNoOverflow(1)->month;
+        $nextYear = $date->addMonthsNoOverflow(1)->year;
+        $prevMonth = date('m', strtotime($year . '-' . $month . ' -1 month'));  //$date->subMonth(1)->format('m');
+        $prevYear = date('Y', strtotime($year . '-' . $month . ' -1 month'));
+
+        $dates = [
+            'prev'      =>  [$prevMonth, $prevYear],
+            'current'   =>  [$month, $year],
+            'next'      =>  [$nextMonth, $nextYear]
+        ];
+
+        return view('expense.index', ['expenses'=> $expenses->get(), 'dates'=>$dates, 'expense_categories'=>ExpenseCategories::orderBy('level', 'asc')->get()]);
+        
     }
 
     public function create($id_category=0){

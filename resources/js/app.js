@@ -163,17 +163,31 @@ $(document).ready(function(){
         });
     });
 
-
+    /*****  Close Session Message */
     $(".alert-close").on("click", function(){
         $("." + $(this).attr("data-target") ).remove();
     });
 
+    /*****  Show Alerts */
     $(".notifications").on("click", function(e){
         if(e.target != this) return;
         $(".notifications").addClass('hide');
     });
 
     $(".notifications_show").on("click", function(){
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url         :   '/alerts',
+            method      :   'POST',
+            data        :   {'_token': _token},
+            dataType    :   'json',
+            success     :   function(r){
+                $.each(r, function(index, element) {
+                    console.log(element.alert_message);
+                });
+                
+            }
+        });
         $(".notifications").removeClass('hide');
     });
 
@@ -197,7 +211,6 @@ $(document).ready(function(){
     });
 
     /** Chart Js */
-
     $(".chart_periode").on('change', function(){
         $(".chart_change").attr("data-value",0 );
         var thisYear = moment().format('YYYY');

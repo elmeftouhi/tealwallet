@@ -37,8 +37,11 @@ Route::get('/expense/graph/{year}', 'ExpenseController@sumByYear')->name('expens
 Route::get('/expense/graph/{year}/{month}', 'ExpenseController@sumByYearMonth')->name('expense.graph.month');
 Route::get('/expense/pie/{year}/{month}', 'ExpenseController@groupByCategory')->name('expense.pie');
 
+Route::get('/expense/search', 'ExpenseController@search')->name('expense.search');
 
 Route::get('/expense/{month}/{year}', 'ExpenseController@index')->name('expense.month');
+
+Route::post('/alerts', 'AlertController@getAlerts')->name('alerts');
 
 Route::get('/user/edit', 'ProfileController@edit')->name('user.edit');
 Route::patch('/user/update', 'ProfileController@update')->name('user.update');
